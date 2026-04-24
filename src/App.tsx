@@ -1,122 +1,81 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState, useEffect } from 'react';
+import { Cloud, GitBranch, Server, Terminal, Settings, ShieldCheck } from 'lucide-react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isVisible, setIsVisible] = useState(false);
+  const name = "John Doe"; // Placeholder name
+
+  useEffect(() => {
+    // Trigger fade-in animation after component mounts
+    setIsVisible(true);
+  }, []);
+
+  const skills = [
+    {
+      title: "CI/CD Pipelines",
+      desc: "Automating builds, tests, and deployments using tools like Jenkins, GitHub Actions, and GitLab CI.",
+      icon: <GitBranch size={24} />
+    },
+    {
+      title: "Containerization",
+      desc: "Packaging applications and their dependencies into lightweight, portable containers with Docker.",
+      icon: <Server size={24} />
+    },
+    {
+      title: "Orchestration",
+      desc: "Managing and scaling containerized applications across clusters using Kubernetes.",
+      icon: <Settings size={24} />
+    },
+    {
+      title: "Infrastructure as Code",
+      desc: "Provisioning and managing infrastructure through code using Terraform and Ansible.",
+      icon: <Terminal size={24} />
+    },
+    {
+      title: "Cloud Platforms",
+      desc: "Deploying and managing scalable architectures on AWS, Azure, and Google Cloud.",
+      icon: <Cloud size={24} />
+    },
+    {
+      title: "DevSecOps",
+      desc: "Integrating security practices and automated scanning early in the software development lifecycle.",
+      icon: <ShieldCheck size={24} />
+    }
+  ];
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className={`app-container ${isVisible ? 'visible' : ''}`}>
+      {/* Header Card */}
+      <div className="card">
+        <div className="icon-container">
+          <Cloud className="devops-icon" size={48} />
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+        <h1 className="greeting">
+          Hi, I'm <span className="name">{name}</span>
+        </h1>
+        <h2 className="workshop-message">
+          I successfully completed the Zoople DevOps Workshop.
+        </h2>
+        <p className="subtitle">
+          Ready to automate, scale, and secure modern infrastructure!
+        </p>
+      </div>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      {/* Skills / What I Learned */}
+      <h3 className="section-title">My DevOps Toolkit</h3>
+      <div className="skills-grid">
+        {skills.map((skill, index) => (
+          <div className="skill-card" key={index}>
+            <div className="skill-icon-container">
+              {skill.icon}
+            </div>
+            <h4 className="skill-title">{skill.title}</h4>
+            <p className="skill-desc">{skill.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
