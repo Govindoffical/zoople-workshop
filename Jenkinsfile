@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'zoople-devops-workshop-vijin:latest'
+        IMAGE_NAME = 'zoople-devops-workshop-Govindoffical:latest'
         CONTAINER_NAME = 'vijin-app'
         APP_PORT = '3000'
-        DOMAIN = 'vijin.workshop.zoople.in'
+        DOMAIN = 'Govindoffical.workshop.zoople.in'
         NGINX_DIR = '/home/ubuntu/nginx'
     }
 
